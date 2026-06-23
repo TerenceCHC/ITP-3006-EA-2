@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港飛龍足球俱樂部 - 首頁</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 頁首：導航列 -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html">🐉 飛龍FC</a>
+            </div>
+            <!-- 漢堡選單按鈕（手機版） -->
+            <button class="nav-toggle" aria-label="選單開關">☰</button>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">首頁</a></li>
+                    <li><a href="about.html">關於我們</a></li>
+                    <li><a href="squad.html">球員陣容</a></li>
+                    <li><a href="join.html">加入會員</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主內容 -->
+    <main>
+        <!-- 英雄區 -->
+        <section class="hero">
+            <div class="container">
+                <h1>香港飛龍足球俱樂部</h1>
+                <p>團結 · 激情 · 永不放棄</p>
+                <a href="join.html" class="btn-primary">立即加入我們</a>
+            </div>
+        </section>
+
+        <!-- 俱樂部簡介 -->
+        <section class="intro">
+            <div class="container">
+                <h2>歡迎來到飛龍大家庭</h2>
+                <div class="intro-grid">
+                    <div>
+                        <img src="https://picsum.photos/400/300?random=1" alt="球隊合照" class="responsive-img">
+                    </div>
+                    <div>
+                        <p>香港飛龍足球俱樂部成立於 2010 年，致力於推廣本地足球運動，培養年輕球員。我們擁有專業教練團隊、完善訓練設施，並積極參與各級聯賽。</p>
+                        <p>無論你是想踢球、看球還是交朋友，飛龍都歡迎你！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 下一場比賽倒數 -->
+        <section class="countdown-section">
+            <div class="container">
+                <h2>下一場主場賽事</h2>
+                <div id="countdown-timer" class="countdown">
+                    <span id="days">00</span>天
+                    <span id="hours">00</span>時
+                    <span id="minutes">00</span>分
+                    <span id="seconds">00</span>秒
+                </div>
+                <p>2026年7月15日 晚上8:00 旺角大球場</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 香港飛龍足球俱樂部 | 追蹤我們 
+                <a href="#" target="_blank">Facebook</a> | 
+                <a href="#" target="_blank">Instagram</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
