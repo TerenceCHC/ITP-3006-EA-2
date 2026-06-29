@@ -1,12 +1,196 @@
 <html>
 <head>
 	<title>Join Us</title>
-	<h1>Join</h1>
-</head>
-<body>
-	Name : <br/>
-	Gender : <br />
-	Age ; <br/>
-	<a href="file:///D:/ITP-3006-EA-2/index.html">Exit</a>
-</body
-</html>
+    <style type="text/css">
+        #termsModal {
+            display: none; /* 預設隱藏 */
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+            /* 彈窗白色方框 */
+            #termsModal .modal-content {
+                background-color: #fefefe;
+                margin: 10% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 70%;
+                max-height: 70vh;
+                overflow-y: auto;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+
+            /* 右上角關閉按鈕 X */
+            #termsModal .close-btn {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+                #termsModal .close-btn:hover {
+                    color: black;
+                }
+    </style>
+
+		<script type="text/javascript" >
+		function initForm() {
+			var today = new Date();
+			var birthdayField = document.getElementById('birthday');
+
+			if (birthdayField) {
+				birthdayField .valueAsDate = today;
+			}
+		}
+
+		function.validateForm() {
+			var username = document.getElementById('username').value.trim();
+			var genderMale = document.getElementById('gender_male');
+			var genderFemale = document.getElementById('gender_female');
+			var email = document.getElementById('email').value.trim();
+			var pwd = document.getElementById('password').value;
+			var pwd_confirm = document.getElementById('password_confirm').value;
+			var phone = document.getElementById('phone').value.trim();
+			var agree = document.getElementById('agree');
+
+			if(username === "") {
+				alert("input name") document.getElementById('username').focus();
+				return false;
+			}
+
+			if(!genderMale && !genderFemale) {
+				alert("c 1");
+				return false;
+			}
+
+			if(email ==="") {
+				alert("input email") document.getElementById('email').focus();
+				return false;
+			}
+
+			var email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+			if (!email_pattern.test(email)) {
+				alert("input email");
+				document .getElementById('email').focus();
+				return false;
+			}
+
+			if(pwd.length < 8) {
+				alert("need 8 pwd");
+				document .getElementById('password').focus();
+				return false;
+			}
+
+			if(pwd !== pwd_confirm) {
+				alert("no");
+				document .getElementById('password_confirm').focus();
+				return false;
+			}
+
+			if(phone.length < 8) {
+				alert("need 8");
+				document .getElementById('phone').focus();
+				return false;
+			}
+
+			if(!agree.checked) {
+				alert("need ok");
+				agree .focus();
+				return false;
+			}
+
+			alert("ok");
+			return false;
+		}
+
+		</head >
+		<body onload = "initForm()" >
+		<h1 > Join</h1 >
+		<p > input</p >
+		<form name="register" onsubmit="return validateForm();" >
+		<table border="0" cellpadding="8" >
+		<tr >
+		<td width="120" > <strong > Name *: </strong > </td >
+		<td > <input type="text" id = "username" name="username" size = "30" >
+		</tr >
+		<tr >
+		<td > <strong > Gender *: </strong > </td >
+		<td >
+		<input type = "radio" id = "gender_male" name = "gender" value = "M" > M
+		<input type = "radio" id = "gender_female" name = "gender" value = "F" > F
+		</td >
+		</tr >
+		<tr >
+		<td > <strong > Birthday *: </strong > </td >
+		<td > <input type="date" id="birthday" name="birthday" > </td >
+		</tr >
+		<tr >
+		<td > <strong > Email *: </strong > </td >
+		<td > <input type="email" id="email" name="email" size="30" > </td >
+		</tr >
+		<tr >
+		<td > <strong > Password *: </strong > </td >
+		<td > <input type="password" id="password" name="password" size="30" > </td >
+		</tr >
+		<tr >
+		<td > <strong > Password_Confirm *: </strong > </td >
+		<td > <input type="password" id="password_confirm" name="password_confirm" size="30" > </td >
+		</tr >
+		<tr >
+		<td > <strong > Phone *: </strong > </td >
+		<td > <input type="text" id="phone" name="phone" size="30" > </tr >
+		</tr >
+		<tr >
+		<td > <strong > 足球位置</strong > </td >
+		<td >
+		<select id="position" name="position" style="width:200px;" >
+		<option value="" > 請選擇您的主要位置</option >
+		<option value="GK" > 守門員 (GK)</option >
+		<option value="CB" > 中後衛 (CB)</option >
+		<option value="LB/RB" > 邊後衛 (LB/RB)</option >
+		<option value="CDM" > 防守中場 (CDM)</option >
+		<option value="CM" > 中場 (CM)</option >
+		<option value="CAM" > 進攻中場 (CAM)</option >
+		<option value="LW/RW" > 邊鋒 (LW/RW)</option >
+		<option value="ST/CF" > 前鋒 (ST/CF)</option >
+		</select >
+		</td >
+		</tr >
+		<tr >
+		<td colspan = "2" >
+		<input type="checkbox" id="agree" name="agree" >
+		<strong > 我已閱讀並同意
+		<a href="#" onclick="openTerms(); return false;" > 會員服務條款</a > *
+		</strong >
+		</td >
+		</tr >
+		<tr >
+		<td colspan="2" align="center" style="padding-top:15px;" >
+		<input type="submit" value="Submit" style="padding:8px 30px; font-size:16px;" >
+		<input type="reset" value="Clear" style="padding:8px 30px; font-size:16px;" >
+		</td >
+		</tr >
+		</table >
+		</form >
+		<div id="termsModal" >
+		<div class="modal-content" >
+		<span class="close-btn" onclick="closeTerms()" > &times;</span >
+		<h2 > member</h2 >
+		<p > not </p >
+		<p style="color: #666; font-size: 0.9em;" > 最後更新日期：2026年6月29日</p >
+		<div style="text-align: center; margin-top: 20px;" >
+		<button onclick="closeTerms()" style="padding: 8px 30px; font-size: 16px; cursor: pointer;" > </butten >
+		</div >
+		</div >
+		</div >
+		<a href="file:///D:/ITP-3006-EA-2/index.html" > Exit</a >
+		</body >
+		</html >
