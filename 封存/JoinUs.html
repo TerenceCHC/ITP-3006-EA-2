@@ -1,0 +1,344 @@
+<html>
+<head>
+	<title>Join Us</title>
+	<style type="text/css">
+        #termsModal {
+            display: none; /* Preset hidden */
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+            /* pop-up window with white box */
+		#termsModal .modal-content {
+			background-color: #fefefe;
+			margin: 10% auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 70%;
+			max-height: 70vh;
+			overflow-y: auto;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+		}
+
+            /* Close button in the upper right corner X */
+		#termsModal .close-btn {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		#termsModal .close-btn:hover {
+			color: black;
+		}
+	</style>
+
+	<script type="text/javascript">
+		function initForm() {
+		var today = new Date();
+		var birthdayField = document.getElementById('birthday');
+			if (birthdayField){
+				birthdayField .valueAsDate = today;
+			}
+		}
+
+		function validateForm(){
+			var username = document.getElementById('username').value.trim();
+			var genderMale = document.getElementById('gender_male');
+			var genderFemale = document.getElementById('gender_female');
+			var birthday = document.getElementById('birthday').value;
+			var email = document.getElementById('email').value.trim();
+			var pwd = document.getElementById('password').value;
+			var pwd_confirm = document.getElementById('password_confirm').value;
+			var phone = document.getElementById('phone').value.trim();
+			var agree = document.getElementById('agree');
+
+			if(username === "") {
+				alert("input Username");
+				document.getElementById('username').focus();
+				return false;
+			}
+
+			if(!genderMale.checked && !genderFemale.checked) {
+				alert("Choose one");
+				return false;
+			}
+			
+			if (birthday === "") {
+				alert("input your birthday！");
+				document.getElementById('birthday').focus();
+				return false;
+				}
+			if(email ==="") {
+				alert("input your email");
+				document.getElementById('email').focus();
+				return false;
+			}
+
+			var email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+			if (!email_pattern.test(email)) {
+				alert("input your email");
+				document.getElementById('email').focus();
+				return false;
+			}
+
+			if(pwd.length < 8) {
+				alert("Enter an 8-digit password.");
+				document.getElementById('password').focus();
+				return false;
+			}
+
+			if(pwd !== pwd_confirm) {
+				alert("The password does not match the above.");
+				document.getElementById('password_confirm').focus();
+				return false;
+			}
+
+			if(phone.length < 8) {
+				alert("Enter an 8-digit phone number");
+				document.getElementById('phone').focus();
+				return false;
+			}
+
+			if(!agree.checked) {
+				alert("To confirm");
+				agree .focus();
+				return false;
+			}
+
+			alert("Complete registration");
+			return false;
+		}
+
+		function openTerms() {
+			document.getElementById('termsModal').style.display = "block";
+		}
+
+		function closeTerms() {
+			document.getElementById('termsModal').style.display = "none";
+		}
+
+		window.onclick = function(event) {
+			var modal = document.getElementById('termsModal');
+			if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+
+</script>
+</head>
+<body onload="initForm()">
+	<h1>Join</h1>
+	<p>Enter your personal information</p>
+	<form name="register" onsubmit="return validateForm();">
+
+		<table border="0" cellpadding="8">
+
+			<tr>
+				<td width="300"> <strong> Name *: </strong> </td>
+				<td> <input type="text" id="username" name="username" size="30">
+			</tr>
+
+			<tr>
+				<td> <strong> Gender *: </strong> </td>
+				<td>
+					<input type="radio" id="gender_male" name="gender" value="M"> M
+					<input type="radio" id="gender_female" name="gender" value="F"> F
+				</td>
+			</tr>
+
+			<tr>
+				<td> <strong> Birthday *: </strong> </td>
+				<td><input type="date" id="birthday" name="birthday"> </td>
+			</tr>
+
+			<tr>
+				<td><strong> Email *: </strong> </td>
+				<td><input type="email" id="email" name="email" size="30"> </td>
+			</tr>
+
+			<tr>
+				<td><strong> Password *: </strong> </td>
+				<td><input type="password" id="password" name="password" size="30"> </td>
+			</tr>
+
+			<tr>
+				<td><strong>  Password_Confirm * : </strong> </td>
+				<td> <input type="password" id="password_confirm" name="password_confirm" size="30"> </td>
+			</tr>
+
+			<tr>
+				<td> <strong> Phone *: </strong> </td>
+				<td> <input type="text" id="phone" name="phone" size="30">
+			</tr>
+			</tr >
+
+			<tr>
+				<td> <strong> Football position</strong> </td>
+				<td>
+					<select id="position" name="position" style="width:250px;">
+						<option value=""> Please select your primary location.</option>
+						<option value="GK"> Goalkeeper (GK)</option>
+						<option value="CB"> Center Back (CB)</option>
+						<option value="LB/RB"> Full-Back (LB/RB)</option>
+						<option value="DM/DMF"> Defensive Midfielder (DM/DMF)</option>
+						<option value="CM"> Central Midfielder (CM)</option>
+						<option value="AM/AMF"> Attacking Midfielder (AM/AMF)</option>
+						<option value="LW/RW"> Classic Winger (LW/RW)</option>
+						<option value="ST/FW"> Forward / Striker (ST/FW)</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="2">
+					<input type="checkbox" id="agree" name="agree">
+					<strong>
+						I have read and agree.
+						<a href="#" onclick="openTerms(); return false;"> Membership Service Terms</a> *
+					</strong>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="2" align="center" style="padding-top:15px;">
+					<input type="submit" value="Submit" style="padding:8px 30px; font-size:16px;">
+					<input type="reset" value="Clear" style="padding:8px 30px; font-size:16px;">
+				</td>
+			</tr>
+		</table>
+	</form>
+
+	<div id="termsModal">
+		<div class="modal-content">
+			<span class="close-btn" onclick="closeTerms()"> &times;</span>
+			<h1> member</h1>
+			<p>
+				<h2>Preamble</h2>
+			<p>
+				<strong>
+					Welcome to Football Club.
+					By becoming a member, you agree to these Terms & Conditions. However,
+					let’s be honest – nobody actually reads these things.
+					We know that, and you know that.
+					So we’ve written this document purely for legal compliance,
+					but we’ve also hidden a few Easter eggs for the one person
+					who might actually scroll all the way down. Congratulations,
+					you are that person (or maybe you’re just skipping to the end – we see you).
+				</strong>
+			</p>
+
+			Article 1 – Acceptance of Terms
+			<p>
+				By using our facilities, attending our events,
+				or simply saying “I’m a member,”
+				you are deemed to have accepted these terms.
+				But since you’re not reading this, we’ll just assume you agree to everything
+				– including the part where we give ourselves the right to change the club’s
+				name to “The Unicorn Kickers” at any time without notice.
+			</p>
+
+			<p>
+				Article 2 – Modifications
+				We reserve the right to modify,
+				amend, or completely rewrite these terms whenever we feel like it.
+				We will notify you by posting a new version on our website,
+				but let’s face it – you won’t see it because you never visit the website anyway,
+				ou only check Instagram. So changes are effective immediately,
+				and you are bound by them whether you like it or not.
+			</p>
+
+			<p>
+				Article 3 – Membership Obligations
+				As a member, you promise to:
+
+				<ul>
+					<li>Show up to training at least once in your lifetime (optional).</li>
+					<li>
+						Wear proper footwear, but if you show up in flip‑flops,
+						we’ll just laugh and take a photo.
+					</li>
+
+					<li>
+						Not blame the goalkeeper for every goal conceded –
+						it’s usually the defence’s fault anyway.
+					</li>
+
+					<li>Actually have fun. If you’re not having fun, you’re doing it wrong.</li>
+				</ul>
+			</p>
+
+			<p>
+				Article 4 – Liability and Waiver
+				Football involves running, kicking,
+				and occasionally colliding with other humans.
+				We are not responsible for any injuries,
+				lost shin guards, or bruised egos.
+				If you get hurt, you can either cry about it or buy us a drink –
+				we prefer the latter. Also, we are not liable for any pizza you might spill
+				while celebrating a victory.
+
+			</p>
+
+			<p>
+				Article 5 – Termination
+				We can terminate your membership at any time,
+				for any reason, or for no reason at all – for example,
+				if you wear a rival club’s jersey to our game. However,
+				we probably won’t, because we’re too lazy to update the member list.
+				You can also quit anytime, but we’ll secretly judge you for leaving.
+
+			</p>
+
+			<p>
+				Article 6 – Dispute Resolution
+				Any dispute arising from these terms shall be resolved by a friendly game of
+				rock‑paper‑scissors. If that fails,
+				we’ll flip a coin. If the coin lands on its edge,
+				we’ll just agree to disagree and move on. Seriously,
+				life’s too short for legal battles.
+			</p>
+
+			<p>
+				Article 7 – Miscellaneous
+
+				<ul>
+					<li>These terms are governed by the laws of common sense.</li>
+
+					<li>
+						If any provision is found to be unenforceable,
+						we’ll just pretend it never existed.
+					</li>
+
+					<li>
+						By reading this far, you are officially our favourite member,
+						and you get a virtual high‑five 🖐️.
+					</li>
+				</ul>
+			</p>
+
+			<p>
+				Final Clause
+				We thank you for your time (or for skipping straight here).
+				Now go out and play some football – that’s what really matters.
+
+			</p>
+			</p>
+			<p style="color: #666; font-size: 0.9em;"> Last updated: June 29, 2026</p>
+			<div style="text-align: center; margin-top: 20px;">
+				<button onclick="closeTerms()" style="padding: 8px 30px; font-size: 16px; cursor: pointer;"> </button>
+			</div>
+		</div>
+	</div>
+	<a href="index.html"> Exit</a><br />
+	<img src="WhatsApp Image 2026-06-29 at 7.21.48 PM (2).jpeg" alt="Alternate Text" />
+</body>
+</html >
