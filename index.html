@@ -1,22 +1,96 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-HK">
 <head>
-	<title>Football Club</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Club</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <div class="container nav-container"></div>
+        <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">Football Club</a>
+        </div>
+        <ul class="nav-menu">
+            <!-- 当前页面（首页）给链接加上 active 类，用于高亮显示 -->
+            <li><a href="index.html" class="active">Home</a></li>
+            <!-- 以下链接暂时指向你已有的页面，你可以按需修改 -->
+            <li><a href="HistoryOfFootball.html">Matches</a></li>
+            <li><a href="HistoryOfFootball.html">Team</a></li>
+            <!-- # 表示空链接，占位用，后续可以换成真实页面或外部链接 -->
+            <li><a href="#">Tickets</a></li>
+            <li><a href="#">Store</a></li>
+            <li><a href="AboutUs.html">About</a></li>
+         </ul>
+        <div class="hamburger" id="hamburger">☰</div>
+        </nav>
     </header>
-    <h1>Welcome</h1>
-    <img src="images.jpg" width"200" />
-    <img src="soccer-football.gif" width="300" alt="Alternate Text" />
-    <ul>
-        <li><a href="AboutUs.html">About Us</a></li>
-        <li><a href="JoinUs.html">Join Us</a></li>
-        <li><a href="HistoryOfFootball.html">History of Football</a></li>
-        <li><a href="https://realmadridhkfc.org/about/realmadrid/">Real Madrid Club de Fútbol</a></li>
-        <li><a href="https://www.manutd.com/zh/news">Manchester United Football Club</a></li>
-    </ul>
-    <img src="WhatsApp Image 2026-06-29 at 7.21.48 PM (3).jpeg" alt="Alternate Text" />
+        <section class="hero">
+        <div class="hero-content">
+            <!-- 主标题：大号、加粗、带阴影 -->
+            <h1>ROAR TO VICTORY</h1>
+            <!-- 上一场比赛结果 -->
+            <p class="match-result">LAST MATCH: 3-1 WIN AGAINST RIVNEFC</p>
+            <!-- 按钮：点击后可以跳转或触发事件（这里用JavaScript绑定点击弹窗） -->
+            <a href="#" class="btn" id="watchHighlightBtn">WATCH HIGHLIGHT</a>
+        </div>
+    </section>
+
+        <!-- ============================================ -->
+    <!-- 3. 三大功能板块 (Features / Cards)           */
+    /* 解释：使用Flexbox将三个卡片水平并排。
+         每个卡片独立成块，展示不同内容：比赛、球员、新闻。
+         完全匹配你图片中的三栏布局。 */ -->
+    <!-- ============================================ -->
+    <section class="features">
+        
+        <!-- 卡片1：即将到来的比赛 -->
+        <div class="feature-box">
+            <h2>UPCOMING MATCHES</h2>
+            <ul>
+                <!-- 用<li>列出两场比赛信息 -->
+                <li>07/22 - CITY FC · 20:00</li>
+                <li>07/22 - UNITED FC · 19:30</li>
+            </ul>
+        </div>
+
+               <div class="feature-box">
+            <h2>OUR STAR PLAYERS</h2>
+            <div class="players">
+                <!-- 单个球员：图片 + 号码，垂直居中排列 -->
+                <div class="player">
+                    <!-- 注意：src路径请改成你自己的图片文件名 -->
+                    <!--<img src="images/player1.jpg" alt="球员9号">-->
+                    <span>#9</span>
+                </div>
+                <div class="player">
+                    <!--<img src="images/player2.jpg" alt="球员10号">-->
+                    <span>#10</span>
+                </div>
+                <div class="player">
+                    <!--<img src="images/player3.jpg" alt="球员7号">-->
+                    <span>#7</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片3：最新新闻 -->
+        <div class="feature-box">
+            <h2>LATEST NEWS</h2>
+            <ul>
+                <li><strong>NEW SIGNING:</strong> WELCOME ALEX TO THE TEAM</li>
+                <li><strong>TRAINING SESSION:</strong> BEHIND THE SCENES</li>
+            </ul>
+        </div>
+
+    </section>
+
+        <footer>
+        <p>&copy; 2026 Football Club. All rights reserved.</p>
+    </footer>
+    <script src="js/main.js"></script>
+
+    <!-- 引入外部JavaScript文件（放在body末尾，确保DOM加载完毕后再执行） -->
 </body>
 </html>

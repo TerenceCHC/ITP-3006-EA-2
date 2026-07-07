@@ -1,139 +1,141 @@
+<!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="css/style.css">
 	<title>Join Us</title>
 	<style type="text/css">
-        #termsModal {
-            display: none; /* Preset hidden */
-            position: fixed;
-            z-index: 999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-
-            /* pop-up window with white box */
-		#termsModal .modal-content {
-			background-color: #fefefe;
-			margin: 10% auto;
-			padding: 20px;
-			border: 1px solid #888;
-			width: 70%;
-			max-height: 70vh;
-			overflow-y: auto;
-			border-radius: 10px;
-			box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+		#termsModal {
+			display: none; /* Preset hidden */
+			position: fixed;
+			z-index: 999;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.5);
 		}
 
-            /* Close button in the upper right corner X */
-		#termsModal .close-btn {
-			color: #aaa;
-			float: right;
-			font-size: 28px;
-			font-weight: bold;
-			cursor: pointer;
-		}
+			/* pop-up window with white box */
+			#termsModal .modal-content {
+				background-color: #fefefe;
+				margin: 10% auto;
+				padding: 20px;
+				border: 1px solid #888;
+				width: 70%;
+				max-height: 70vh;
+				overflow-y: auto;
+				border-radius: 10px;
+				box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+			}
 
-		#termsModal .close-btn:hover {
-			color: black;
-		}
+			/* Close button in the upper right corner X */
+			#termsModal .close-btn {
+				color: #aaa;
+				float: right;
+				font-size: 28px;
+				font-weight: bold;
+				cursor: pointer;
+			}
+
+				#termsModal .close-btn:hover {
+					color: black;
+				}
 	</style>
 
 	<script type="text/javascript">
 		function initForm() {
 		var today = new Date();
 		var birthdayField = document.getElementById('birthday');
-			if (birthdayField){
-				birthdayField .valueAsDate = today;
-			}
+		if (birthdayField){
+		birthdayField .valueAsDate = today;
+		}
 		}
 
 		function validateForm(){
-			var username = document.getElementById('username').value.trim();
-			var genderMale = document.getElementById('gender_male');
-			var genderFemale = document.getElementById('gender_female');
-			var birthday = document.getElementById('birthday').value;
-			var email = document.getElementById('email').value.trim();
-			var pwd = document.getElementById('password').value;
-			var pwd_confirm = document.getElementById('password_confirm').value;
-			var phone = document.getElementById('phone').value.trim();
-			var agree = document.getElementById('agree');
+		var username = document.getElementById('username').value.trim();
+		var genderMale = document.getElementById('gender_male');
+		var genderFemale = document.getElementById('gender_female');
+		var birthday = document.getElementById('birthday').value;
+		var email = document.getElementById('email').value.trim();
+		var pwd = document.getElementById('password').value;
+		var pwd_confirm = document.getElementById('password_confirm').value;
+		var phone = document.getElementById('phone').value.trim();
+		var agree = document.getElementById('agree');
 
-			if(username === "") {
-				alert("input Username");
-				document.getElementById('username').focus();
-				return false;
-			}
+		if(username === "") {
+		alert("input Username");
+		document.getElementById('username').focus();
+		return false;
+		}
 
-			if(!genderMale.checked && !genderFemale.checked) {
-				alert("Choose one");
-				return false;
-			}
-			
-			if (birthday === "") {
-				alert("input your birthday！");
-				document.getElementById('birthday').focus();
-				return false;
-				}
-			if(email ==="") {
-				alert("input your email");
-				document.getElementById('email').focus();
-				return false;
-			}
+		if(!genderMale.checked && !genderFemale.checked) {
+		alert("Choose one");
+		return false;
+		}
 
-			var email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (birthday === "") {
+		alert("input your birthday！");
+		document.getElementById('birthday').focus();
+		return false;
+		}
+		if(email ==="") {
+		alert("input your email");
+		document.getElementById('email').focus();
+		return false;
+		}
 
-			if (!email_pattern.test(email)) {
-				alert("input your email");
-				document.getElementById('email').focus();
-				return false;
-			}
+		var email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-			if(pwd.length < 8) {
-				alert("Enter an 8-digit password.");
-				document.getElementById('password').focus();
-				return false;
-			}
+		if (!email_pattern.test(email)) {
+		alert("input your email");
+		document.getElementById('email').focus();
+		return false;
+		}
 
-			if(pwd !== pwd_confirm) {
-				alert("The password does not match the above.");
-				document.getElementById('password_confirm').focus();
-				return false;
-			}
+		if(pwd.length < 8) {
+		alert("Enter an 8-digit password.");
+		document.getElementById('password').focus();
+		return false;
+		}
 
-			if(phone.length < 8) {
-				alert("Enter an 8-digit phone number");
-				document.getElementById('phone').focus();
-				return false;
-			}
+		if(pwd !== pwd_confirm) {
+		alert("The password does not match the above.");
+		document.getElementById('password_confirm').focus();
+		return false;
+		}
 
-			if(!agree.checked) {
-				alert("To confirm");
-				agree .focus();
-				return false;
-			}
+		if(phone.length < 8) {
+		alert("Enter an 8-digit phone number");
+		document.getElementById('phone').focus();
+		return false;
+		}
 
-			alert("Complete registration");
-			return false;
+		if(!agree.checked) {
+		alert("To confirm");
+		agree .focus();
+		return false;
+		}
+
+		alert("Complete registration");
+		return false;
 		}
 
 		function openTerms() {
-			document.getElementById('termsModal').style.display = "block";
+		document.getElementById('termsModal').style.display = "block";
 		}
 
 		function closeTerms() {
-			document.getElementById('termsModal').style.display = "none";
+		document.getElementById('termsModal').style.display = "none";
 		}
 
 		window.onclick = function(event) {
-			var modal = document.getElementById('termsModal');
-			if (event.target == modal) {
-			modal.style.display = "none";
+		var modal = document.getElementById('termsModal');
+		if (event.target == modal) {
+		modal.style.display = "none";
 		}
-	}
+		}
 
-</script>
+	</script>
 </head>
 <body onload="initForm()">
 	<h1>Join</h1>

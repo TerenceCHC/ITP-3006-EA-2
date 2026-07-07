@@ -1,0 +1,318 @@
+/* ============================================= */
+/* 1. 全局重置和基础设置                         */
+/* 解释：* 通配符去掉所有元素的默认内外边距，
+   box-sizing: border-box 让宽度包含padding和边框，
+   方便我们精确控制尺寸。 */
+/* ============================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 设置全局字体、背景色、文字颜色 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* 让链接默认无下划线，颜色继承父级 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ============================================= */
+/* 2. 导航栏样式 (Navbar)                        */
+/* 解释：用Flexbox让logo在左，菜单在右，垂直居中。
+   背景色深色（#1a1a2e）与金色（#f0a500）搭配，
+   体现足球俱乐部的力量感和高级感。 */
+/* ============================================= */
+.navbar {
+    display: flex;                /* 启用弹性盒子布局 */
+    justify-content: space-between; /* 左右两端对齐 */
+    align-items: center;          /* 垂直居中 */
+    background-color: #1a1a2e;    /* 深蓝黑背景 */
+    padding: 0 2rem;              /* 左右内边距，让内容不贴边 */
+    height: 70px;                 /* 固定导航高度 */
+    position: sticky;             /* 粘性定位，滚动时导航固定在顶部 */
+    top: 0;
+    z-index: 1000;               /* 确保导航在最上层，不被其他元素遮挡 */
+}
+
+/* Logo样式：字体大、加粗、白色 */
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+/* 导航菜单：取消列表默认样式，用Flexbox水平排列 */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;                /* 菜单项之间的间距 */
+}
+
+/* 每个菜单项里的链接 */
+.nav-menu li a {
+    color: #fff;
+    padding: 0.5rem 1.2rem;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.3s ease;  /* 过渡动画，让悬停变化更平滑 */
+}
+
+/* 悬停效果：背景变金色，文字变深色 */
+.nav-menu li a:hover {
+    background-color: #f0a500;
+    color: #1a1a2e;
+}
+
+/* 当前页面高亮（active类）：直接显示金色文字 */
+.nav-menu li a.active {
+    color: #f0a500;
+    font-weight: 700;
+}
+
+/* 汉堡菜单按钮：默认隐藏（只在手机屏幕显示） */
+.hamburger {
+    display: none;               /* PC宽屏下隐藏 */
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;          /* 防止双击选中文字 */
+}
+
+/* ============================================= */
+/* 3. 主视觉区 (Hero)                           */
+/* 解释：使用线性渐变叠加背景图，制造半透明蒙层。
+   背景图用 cover 铺满整个区域，居中显示。
+   高度设为 70vh (视口高度的70%)，在大屏上很壮观。 */
+/* ============================================= */
+.hero {
+    /* 注意：请把 /hero-bg.png 换成你电脑里实际有的图片路径 */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('../hero-bg.png');
+    background-size: cover;        /* 背景图完全覆盖盒子 */
+    background-position: center;   /* 背景图居中 */
+    height: 70vh;                 /* 高度为视口高度的70% */
+    display: flex;
+    justify-content: center;      /* 水平居中 */
+    align-items: center;          /* 垂直居中 */
+    text-align: center;           /* 文字居中 */
+    color: #fff;
+}
+
+/* 主标题文字样式 */
+.hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); /* 文字阴影，增强可读性 */
+    margin-bottom: 0.5rem;
+}
+
+/* 比赛结果文字 */
+.match-result {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    background: rgba(0, 0, 0, 0.4); /* 加半透明背景，让文字更清晰 */
+    display: inline-block;         /* 让背景只包裹文字，不占满整行 */
+    padding: 0.3rem 1.5rem;
+    border-radius: 30px;
+    margin-bottom: 1.5rem;
+}
+
+/* 按钮样式：金色背景，大圆角，加粗 */
+.btn {
+    display: inline-block;
+    background-color: #f0a500;
+    color: #1a1a2e;
+    padding: 0.8rem 2.8rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 15px rgba(240, 165, 0, 0.4);
+}
+
+/* 按钮悬停：颜色加深，微微放大 */
+.btn:hover {
+    background-color: #d49400;
+    transform: scale(1.05);        /* 轻微放大效果，提升交互感 */
+}
+
+/* ============================================= */
+/* 4. 三大功能板块 (Features)                    */
+/* 解释：用Flexbox让三个卡片在一行内等宽排列。
+   每个卡片有白色背景、圆角、阴影，产生立体感。 */
+/* ============================================= */
+.features {
+    display: flex;
+    justify-content: space-between; /* 均匀分布，间距相等 */
+    gap: 2rem;                     /* 卡片之间的间距 */
+    padding: 3rem 2rem;
+    max-width: 1200px;            /* 限制最大宽度，避免在大屏上过于拉伸 */
+    margin: 0 auto;               /* 水平居中 */
+    background: #fff;             /* 白色背景，与Hero区形成视觉分割 */
+}
+
+/* 每个卡片 */
+.feature-box {
+    flex: 1;                      /* 让三个卡片平分剩余空间，等宽 */
+    background-color: #f9f9f9;
+    padding: 1.8rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s;
+}
+
+/* 卡片悬停时阴影加深，提升质感 */
+.feature-box:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 卡片内的标题：底部加金色边框，突出主题 */
+.feature-box h2 {
+    font-size: 1.3rem;
+    border-bottom: 3px solid #f0a500;
+    padding-bottom: 0.7rem;
+    margin-bottom: 1.2rem;
+    color: #1a1a2e;
+    letter-spacing: 1px;
+}
+
+/* 卡片内的列表：去掉默认圆点，设置间距 */
+.feature-box ul {
+    list-style: none;
+}
+.feature-box ul li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #eee; /* 浅色分割线 */
+    font-size: 0.95rem;
+}
+/* 去掉最后一个li的分割线，避免多余线条 */
+.feature-box ul li:last-child {
+    border-bottom: none;
+}
+
+/* 明星球员区域：用Flexbox水平排列三个球员 */
+.players {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+/* 单个球员：垂直排列图片和号码 */
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* 球员头像：圆形、加金色边框 */
+.player img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;           /* 裁切成圆形 */
+    border: 3px solid #f0a500;
+    object-fit: cover;            /* 保持图片比例，裁剪多余部分 */
+}
+
+/* 球员号码：加粗、金色 */
+.player span {
+    font-weight: 700;
+    color: #f0a500;
+    font-size: 1.1rem;
+}
+
+/* ============================================= */
+/* 5. 页脚 (Footer)                             */
+/* ============================================= */
+footer {
+    background-color: #1a1a2e;
+    color: #aaa;
+    text-align: center;
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+    border-top: 3px solid #f0a500;
+}
+
+/* ============================================= */
+/* 6. 响应式设计 (Responsive) - 适配手机/平板   */
+/* 解释：当屏幕宽度小于等于768px时（手机/小平板），
+   导航菜单变为垂直折叠，三个卡片堆叠成一列，
+   Hero文字缩小，保证在小屏幕上也能正常浏览。 */
+/* ============================================= */
+@media (max-width: 768px) {
+
+    /* 导航栏：让汉堡按钮显示 */
+    .hamburger {
+        display: block;            /* 显示汉堡图标 */
+    }
+
+    /* 导航菜单：默认隐藏，通过JS切换 active 类来控制显示 */
+    .nav-menu {
+        display: none;
+        flex-direction: column;    /* 垂直排列 */
+        position: absolute;        /* 绝对定位，脱离文档流 */
+        top: 70px;                /* 紧贴导航栏底部 */
+        left: 0;
+        width: 100%;
+        background-color: #1a1a2e;
+        padding: 1rem 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 当菜单获得 active 类时，显示出来（由JS控制） */
+    .nav-menu.active {
+        display: flex;
+    }
+
+    /* 菜单项垂直排列，宽度占满 */
+    .nav-menu li {
+        text-align: center;
+        padding: 0.5rem 0;
+        width: 100%;
+    }
+
+    /* 菜单链接占满整行，方便点击 */
+    .nav-menu li a {
+        display: block;
+        padding: 0.8rem 0;
+    }
+
+    /* Hero区域高度调小，标题缩小 */
+    .hero {
+        height: 60vh;
+    }
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    .match-result {
+        font-size: 1rem;
+    }
+
+    /* 三个卡片：从水平排列变为垂直堆叠 */
+    .features {
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+    }
+
+    /* 每个卡片宽度100% */
+    .feature-box {
+        width: 100%;
+    }
+
+    /* 球员头像稍微缩小 */
+    .player img {
+        width: 65px;
+        height: 65px;
+    }
+}
