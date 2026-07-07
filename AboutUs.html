@@ -1,58 +1,183 @@
 <html>
 <head>
 	<link rel="stylesheet" href="css/style.css">
-	<style>
-		.wrapper {
-			position: relative;
-			min-hight: 20px;
-		}
-
-		.gif {
-			position: absolute;
-			right: 0;
-			top: 0;
-			width: 90px;
-		}
-	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>About Us</title>
+	<style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                        url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;   /* 背景固定，滾動時不移動 */
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            /* 讓內容置中 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card,
+        .main-title-card,
+        .back-card {
+            max-width: 680px;
+            width: 90%;
+            margin: 0 auto 1.2rem auto;
+            padding: 1.5rem 2.2rem;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            color: #1a1a2e;
+            transition: transform 0.2s ease;
+        }
+
+        /* 卡片滑過時微微浮起 */
+        .card:hover,
+        .main-title-card:hover,
+        .back-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 主標題卡片：文字置中 */
+        .main-title-card {
+            text-align: center;
+        }
+        .main-title-card h1 {
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: #1a1a2e;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        /* 一般卡片內的標題 (h2) */
+        .card h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-top: 0;
+            margin-bottom: 0.3rem;
+            border-bottom: 3px solid #f0a500;
+            padding-bottom: 0.3rem;
+        }
+
+        /* 卡片內的段落 */
+        .card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #1a1a2e;
+            margin: 0.5rem 0 0 0;
+        }
+
+        /* 卡片內的列表 (Our Values) */
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+        }
+        .card ul li {
+            padding: 0.3rem 0;
+            font-size: 1.05rem;
+            border-bottom: 1px dashed #ddd;
+            color: #1a1a2e;
+        }
+        .card ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* 返回按鈕卡片 */
+        .back-card {
+            text-align: center;
+        }
+        .back-card a {
+            display: inline-block;
+            padding: 0.6rem 2rem;
+            background: #1a1a2e;
+            color: #fff;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .back-card a:hover {
+            background: #f0a500;
+            color: #1a1a2e;
+        }
+	</style>
 </head>
 <body>
-	<img src="ukraine-soccer.gif" class="gif" alt="GIF" />
+	<header style="width: 100%;">
+    <nav class="navbar">
+    <div class="logo">
+        <a href="index.html">Football Club</a>
+    </div>
+    	<ul class="nav-menu">
+        	<li><a href="index.html" class="active">Home</a></li>
+        	<li><a href="HistoryOfFootball.html">History</a></li>
+        	<li><a href="JoinUs.html">Join</a></li>
+        	<li><a href="AboutUs.html">About</a></li>
+    	</ul>
+    	<div class="hamburger" id="hamburger">☰</div>
+    	</nav>
+    </header>
+	<div class="main-title-card">
 	<h1>About Us – Welcome to Football Club</h1>
-	<img src="ukraine-soccer.gif" class="gif" alt="GIF" />
+	</div>
+
 
 	<!-- Who We Are -->
-	<strong>Who We Are</strong><br/>
+	<div class="card">
+	<h2>Who We Are</h2>
+	<p>
 	Founded in 2015, we are a diverse community united by our love for football. 
 	Our mission: a welcoming space to enjoy the game, improve skills, and build lasting friendships.<br/>
-	<hr/>
+	</p>
+	</div>
+	
 
 	<!-- What We Do -->
-	<strong>What We Do</strong><br/>
-	We run training, friendly matches, tournaments, and social events for all levels. 
-	We also host watch parties and community outreach to promote the sport.<br/>
-	<hr/>
+	<div class="card">
+	<h2>What We Do</h2>
+	<p>
+	We follow major football events around the world – from the World Cup and Champions League to the Premier League and La Liga. 
+	We also organise regular training sessions, friendly matches, and internal leagues for members to play together. 
+	Whether you love watching or playing, there’s something for everyone.<br/>
+	</p>
+	</div>
 
 	<!-- Our Values -->
-	<strong>Our Values</strong><br/>
+	 <div class="card">
+	<h2>Our Values</h2>
 	<ul>
 		<li><strong>Inclusivity</strong> – Open to all genders, ages, and skill levels.</li>
 		<li><strong>Excellence</strong> – We push each other to improve, both individually and as a team.</li>
 		<li><strong>Community</strong> – We are a family, celebrating wins and supporting through losses.</li>
 	</ul>
-	<hr/>
+	</div>
 
 	<!-- Why Join Us -->
-	<strong>Why Join Us?</strong><br/>
+	<div class="card">
+	<h2>Why Join Us?</h2>
+	<p>
 	Get expert coaching, exclusive training, and a supportive network. 
-	Whether you aim to compete or just play for fun, you belong here.<br/>
-	<hr/>
+	Whether you aim to compete or just play for fun, you belong here.
+	</p>
+	</div>
 
 	<!-- Join the Journey -->
-	<strong>Join the Journey</strong><br/>
+	<div class="card">
+	<h2>Join the Journey</h2>
+	<p>
 	Check our Events page, visit Contact, or follow us on social media. 
-	We can't wait to see you on the pitch!<br/>
-	<hr/>
-	<a href="index.html">Back</a>
+	We can't wait to see you on the pitch!
+	</p>
+	</div>
+    <div class="back-card">
+        <a href="index.html"><strong>Back</strong></a>
+    </div>
+	<script src="js/main.js"></script>
 </body>
 </html>
