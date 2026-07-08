@@ -1,468 +1,200 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>⚽ History of Football · vintage photo style</title>
-	<style>
-		/* ---------- global reset & font ---------- */
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* 背景固定，滾動時不移動 */
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            /* 讓內容置中 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-	body {
-		background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-					url('background.png');
-		background-size: cover;
-		background-position: center;
-		background-attachment: fixed;
-		min-height: 100vh;
-		padding: 2rem 1.5rem;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
+        .card,
+        .main-title-card,
+        .back-card {
+            max-width: 680px;
+            width: 90%;
+            margin: 0 auto 1.2rem auto;
+            padding: 1.5rem 2.2rem;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            color: #1a1a2e;
+            transition: transform 0.2s ease;
+        }
 
-		.paper {
-			max-width: 1100px;
-			width: 100%;
-			background: #f7f2e7;
-			background-image: linear-gradient(0deg, rgba(200, 180, 150, 0.08) 0%, transparent 30%), repeating-linear-gradient(45deg, rgba(160, 130, 90, 0.02) 0px, rgba(160, 130, 90, 0.02) 2px, transparent 2px, transparent 6px);
-			box-shadow: 0 8px 24px rgba(0,0,0,0.25), inset 0 0 0 1px #d6cbbc, inset 0 0 0 8px #ede3d2;
-			padding: 2.5rem 3rem 3rem 3rem;
-			border-radius: 8px 8px 30px 8px;
-			position: relative;
-			transition: all 0.2s;
-		}
+            /* 卡片滑過時微微浮起 */
+            .card:hover,
+            .main-title-card:hover,
+            .back-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            }
 
-			/* photo‑style corner wear */
-			.paper::before {
-				content: '';
-				position: absolute;
-				top: 12px;
-				left: 12px;
-				width: 70px;
-				height: 70px;
-				background: radial-gradient(circle at 0% 0%, rgba(100,70,40,0.15) 0%, transparent 70%);
-				pointer-events: none;
-				border-radius: 0 0 60px 0;
-			}
+        /* 主標題卡片：文字置中 */
+        .main-title-card {
+            text-align: center;
+        }
 
-			.paper::after {
-				content: '';
-				position: absolute;
-				bottom: 12px;
-				right: 12px;
-				width: 90px;
-				height: 90px;
-				background: radial-gradient(circle at 100% 100%, rgba(100,70,40,0.12) 0%, transparent 70%);
-				pointer-events: none;
-				border-radius: 60px 0 0 0;
-			}
+            .main-title-card h1 {
+                font-size: 2.6rem;
+                font-weight: 900;
+                color: #1a1a2e;
+                margin: 0;
+                letter-spacing: 1px;
+            }
 
-		/* ---------- typography ---------- */
-		h1 {
-			font-size: 2.2rem;
-			font-weight: 700;
-			letter-spacing: 1px;
-			color: #3e2f1f;
-			border-bottom: 2px solid #b8a58b;
-			padding-bottom: 0.4rem;
-			margin-top: 1.6rem;
-			margin-bottom: 1.2rem;
-			font-family: 'Times New Roman', 'Georgia', serif;
-			text-shadow: 1px 1px 0 rgba(255,215,180,0.3);
-			display: inline-block;
-		}
+        /* 一般卡片內的標題 (h2) */
+        .card h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-top: 0;
+            margin-bottom: 0.3rem;
+            border-bottom: 3px solid #f0a500;
+            padding-bottom: 0.3rem;
+        }
 
-			h1:first-of-type {
-				margin-top: 0.2rem;
-			}
+        /* 卡片內的段落 */
+        .card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #1a1a2e;
+            margin: 0.5rem 0 0 0;
+        }
 
-			/* small caps / vintage touch */
-			h1::before {
-				content: "✦ ";
-				font-size: 1.8rem;
-				color: #a4815a;
-				opacity: 0.7;
-				font-weight: 300;
-			}
+        /* 卡片內的列表 (Our Values) */
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+        }
 
-		p {
-			font-size: 1.1rem;
-			line-height: 1.7;
-			color: #2f2419;
-			margin-bottom: 1.2rem;
-			text-align: justify;
-			padding: 0 0.2rem;
-		}
+            .card ul li {
+                padding: 0.3rem 0;
+                font-size: 1.05rem;
+                border-bottom: 1px dashed #ddd;
+                color: #1a1a2e;
+            }
 
-			p:first-of-type::first-letter {
-				font-size: 3.4rem;
-				float: left;
-				line-height: 1;
-				margin-right: 0.4rem;
-				color: #7b5f40;
-				font-weight: 700;
-				font-family: 'Georgia', serif;
-				text-shadow: 1px 1px 0 #dac9b4;
-			}
+                .card ul li:last-child {
+                    border-bottom: none;
+                }
 
-		/* list styling – key milestones */
-		ul {
-			list-style: none;
-			padding-left: 0.8rem;
-			margin: 1.2rem 0 1.8rem 0;
-			background: rgba(235, 220, 200, 0.3);
-			border-left: 6px solid #b59a7a;
-			padding: 1rem 1.5rem 1rem 2.2rem;
-			border-radius: 0 20px 20px 0;
-			box-shadow: inset 0 1px 4px rgba(0,0,0,0.03);
-		}
+        /* 返回按鈕卡片 */
+        .back-card {
+            text-align: center;
+        }
 
-			ul li {
-				font-size: 1.05rem;
-				line-height: 1.8;
-				color: #2f2419;
-				padding: 0.15rem 0;
-				position: relative;
-			}
+            .back-card a {
+                display: inline-block;
+                padding: 0.6rem 2rem;
+                background: #1a1a2e;
+                color: #fff;
+                border-radius: 30px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: background 0.3s;
+            }
 
-				ul li::before {
-					content: "⚽";
-					font-size: 1rem;
-					position: absolute;
-					left: -1.8rem;
-					top: 0.1rem;
-					opacity: 0.7;
-				}
-
-		/* special inline markers for milestones that are not in <ul> */
-		.milestone-block {
-			background: #f3ecdf;
-			padding: 0.6rem 1.5rem;
-			border-radius: 40px 8px 40px 8px;
-			display: inline-block;
-			margin: 0.2rem 0.1rem;
-			font-weight: 600;
-			color: #4b351f;
-			border: 1px solid #d6c2ab;
-			box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-			font-size: 0.95rem;
-		}
-
-		/* link "Back" */
-		a {
-			display: inline-block;
-			margin-top: 2.2rem;
-			margin-right: 1.5rem;
-			padding: 0.5rem 2rem;
-			background: #b7a086;
-			color: #fcf6ec;
-			text-decoration: none;
-			font-weight: 600;
-			letter-spacing: 1px;
-			border-radius: 40px;
-			font-size: 1.1rem;
-			border: 1px solid #8f785d;
-			box-shadow: 0 2px 0 #6b583f;
-			transition: 0.1s linear;
-			font-family: 'Times New Roman', serif;
-			text-transform: uppercase;
-		}
-
-			a:hover {
-				background: #9f876b;
-				transform: translateY(1px);
-				box-shadow: 0 1px 0 #5f4d36;
-			}
-
-		/* image – vintage frame */
-		img {
-			display: block;
-			margin-top: 2rem;
-			max-width: 100%;
-			height: auto;
-			border: 10px solid #ede3d2;
-			border-bottom-width: 18px;
-			box-shadow: 0 10px 20px rgba(0,0,0,0.2), inset 0 0 0 1px #cbbaa6;
-			border-radius: 4px 4px 12px 12px;
-			filter: sepia(0.25) contrast(1.05) brightness(0.97);
-			transition: filter 0.3s;
-		}
-
-			img:hover {
-				filter: sepia(0.1) contrast(1.1) brightness(1.02);
-			}
-
-		/* ----- photo‑specific embellishments ----- */
-		.photo-stamp {
-			font-family: 'Courier New', monospace;
-			font-size: 0.75rem;
-			color: #7f6b53;
-			letter-spacing: 0.5px;
-			border-top: 1px dashed #c4b09b;
-			margin-top: 1.8rem;
-			padding-top: 0.8rem;
-			text-align: right;
-			opacity: 0.7;
-		}
-
-		/* small badge for "FIFA · 1930" etc */
-		.fifa-badge {
-			background: #cbb295;
-			color: #2b1e11;
-			padding: 0.1rem 1rem;
-			border-radius: 30px;
-			font-size: 0.85rem;
-			display: inline-block;
-			font-weight: 600;
-			letter-spacing: 0.3px;
-			border: 1px solid #ad9279;
-			box-shadow: inset 0 1px 2px #efe3d2;
-		}
-
-		/* layout helpers */
-		.flex-row {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 1.2rem;
-			align-items: center;
-			margin: 0.5rem 0 0.8rem 0;
-		}
-
-		.divider {
-			width: 100%;
-			height: 2px;
-			background: linear-gradient(90deg, transparent, #b8a087, #dacbb8, #b8a087, transparent);
-			margin: 1.6rem 0 0.8rem 0;
-		}
-
-		/* ---------- responsive ---------- */
-		@media (max-width: 700px) {
-			.paper {
-				padding: 1.8rem 1.2rem 2rem 1.2rem;
-			}
-
-			h1 {
-				font-size: 1.7rem;
-			}
-
-			p {
-				font-size: 1rem;
-			}
-
-			ul li {
-				font-size: 0.95rem;
-			}
-
-			img {
-				border-width: 6px;
-				border-bottom-width: 12px;
-			}
-		}
-
-		@media (max-width: 480px) {
-			body {
-				padding: 0.8rem;
-			}
-
-			.paper {
-				padding: 1.2rem 0.8rem;
-			}
-
-			h1 {
-				font-size: 1.4rem;
-			}
-
-			p {
-				font-size: 0.95rem;
-			}
-		}
-
-		/* mimic photo corners – extra texture */
-		.paper .corner-crease {
-			position: absolute;
-			width: 40px;
-			height: 40px;
-			background: radial-gradient(circle at 100% 100%, rgba(80,60,40,0.1) 0%, transparent 70%);
-			bottom: 20px;
-			left: 20px;
-			pointer-events: none;
-			border-radius: 0 0 0 40px;
-		}
-
-		/* old paper texture overlay */
-		.paper .noise {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23n)" opacity="0.06"/></svg>');
-			pointer-events: none;
-			opacity: 0.3;
-			border-radius: inherit;
-		}
-
-		/* override first-letter on all p's? only first p */
-		p:first-of-type::first-letter {
-			font-size: 3.2rem;
-			float: left;
-			line-height: 0.9;
-			margin-right: 0.4rem;
-			color: #6f5236;
-			font-weight: 700;
-		}
-
-		/* extra vintage line */
-		.vintage-line {
-			font-family: 'Courier New', monospace;
-			font-size: 0.8rem;
-			color: #a28366;
-			text-align: center;
-			margin: 0.2rem 0 0.6rem 0;
-			letter-spacing: 1px;
-			opacity: 0.5;
-		}
-	</style>
+                .back-card a:hover {
+                    background: #f0a500;
+                    color: #1a1a2e;
+                }
+    </style>
 </head>
 <body>
-	<div class="paper">
-		<!-- noise overlay for old photo feel -->
-		<div class="noise"></div>
-		<div class="corner-crease"></div>
+    <header style="width: 100%;">
+        <nav class="navbar">
+            <div class="glass-wrapper">
 
-		<!-- content – exactly as original, only presentation changed -->
-		<h1>Ancient Origins</h1>
-		<p>
-			Football is one of the oldest sports in human history.
-			The earliest recorded form of football dates back over 2,000 years
-			to ancient China, where a game called "Cuju" (蹴鞠)
-			was played during the Warring States period (475–221 BC).
-			The word "Cuju" literally means "kick the ball."
-			During the Han Dynasty,
-			Cuju was used as a military training exercise,
-			with formal rules, dedicated pitches, and even goal keepers.
-			The game reached its peak during the Tang and Song dynasties,
-			becoming a popular activity in the imperial court.
-			In 1958, Dr. João Havelange, then president of FIFA,
-			acknowledged that football originated in China
-		</p>
+                <!-- MAIN TITLE -->
+                <div class="main-title-card">
+                    <h1>About Us</h1>
+                    <span class="sub-glow">✦ Welcome to Football Club ✦</span>
+                </div>
 
-		<p>
-			Meanwhile, in ancient Greece and Rome,
-			a similar ball game called "Harpastum" was played.
-			It involved kicking and carrying a ball across a rectangular
-			field. However, ancient Cuju never developed into
-			the modern game of football with the principle of
-			"fair competition" – that transformation would take place much
-			later in England
-		</p>
+                <!-- Who We Are -->
+                <div class="card">
+                    <h2>Who We Are</h2>
+                    <p>
+                        Founded in 2015, we are a diverse community united by our love for football.
+                        Our mission: a welcoming space to enjoy the game, improve skills, and build lasting friendships.
+                    </p>
+                </div>
 
-		<div class="divider"></div>
+                <!-- What We Do -->
+                <div class="card">
+                    <h2>What We Do</h2>
+                    <p>
+                        We follow major football events around the world – from the World Cup and Champions League to the Premier League and La Liga.
+                        We also organise regular training sessions, friendly matches, and internal leagues for members to play together.
+                        Whether you love watching or playing, there’s something for everyone.
+                    </p>
+                </div>
 
-		<h1>The Birth of Modern Football</h1>
-		<p>
-			The modern game of football as we know it today was born in
-			England. A popular legend tells that in the 11th century,
-			after a battle between England and Denmark,
-			the English soldiers kicked the skull of a Danish invader
-			out of anger. Children later joined in,
-			but finding the skull painful to kick,
-			they replaced it with an inflated cow bladder –
-			and thus the modern football was born.
-		</p>
+                <!-- Our Values -->
+                <div class="card">
+                    <h2>Our Values</h2>
+                    <ul>
+                        <li><strong>Inclusivity</strong> – Open to all genders, ages, and skill levels.</li>
+                        <li><strong>Excellence</strong> – We push each other to improve, both individually and as a team.</li>
+                        <li><strong>Community</strong> – We are a family, celebrating wins and supporting through losses.</li>
+                    </ul>
+                </div>
 
-		<p>
-			By the 12th century, football matches were being played
-			in English towns, though they were often chaotic and violent,
-			sometimes causing damage to houses and injuries to passers-by.
-		</p>
+                <!-- Why Join Us -->
+                <div class="card">
+                    <h2>Why Join Us?</h2>
+                    <p>
+                        Get expert coaching, exclusive training, and a supportive network.
+                        Whether you aim to compete or just play for fun, you belong here.
+                    </p>
+                </div>
 
-		<p>
-			The first written rules of football,
-			known as the "Cambridge Rules," were established in 1848.
-			These rules introduced the concept of 11 players per side,
-			which came from the fact that each school dormitory housed
-			ten students and one teacher.
-		</p>
+                <!-- Join the Journey -->
+                <div class="card">
+                    <h2>Join the Journey</h2>
+                    <p>
+                        Check our Events page, visit Contact, or follow us on social media.
+                        We can't wait to see you on the pitch!
+                    </p>
+                </div>
 
-		<p>
-			The true milestone, however, came on October 26,
-			1863, when the English Football Association (The FA)
-			was founded in London. On that day, the world's first unified
-			set of football rules was written down, and this date is
-			widely recognised as the birthday of modern football.
-		</p>
+                <!-- Back button -->
+                <div class="back-card">
+                    <a href="index.html"><strong>⬅  Back</strong></a>
+                </div>
 
-		<div class="divider"></div>
+                <div class="photo-credit">⚽  the beautiful game  ⚽</div>
+            </div>
 
-		<h1>Key Milestones</h1>
-		<p>
-			After the formation of The FA, football developed rapidly:
-		</p>
+            <script>// mobile hamburger toggle
+                const hamburger = document.getElementById('hamburgerBtn');
+                const navMenu = document.getElementById('navMenu');
+                if (hamburger && navMenu) {
+                    hamburger.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        navMenu.classList.toggle('active');
+                    });
+                    // close on link click (optional)
+                    navMenu.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            navMenu.classList.remove('active');
+                        });
+                    });
+                }</script>
 
-		<ul>
-			<li>1871 – The FA Cup, the world's oldest football competition, was established.</li>
-			<li>1872 – The first official international match was played between England and Scotland.</li>
-			<li>1874 – The offside rule was introduced.</li>
-			<li>1885 – Professional football was legally recognised in England.</li>
-			<li>1888 – The English Football League, the world's first national league, was founded.</li>
-			<li>1896 – Football was included in the first modern Olympic Games.</li>
-		</ul>
-
-		<p>
-			1904 was another landmark year. On May 21,
-			the Fédération Internationale de Football Association (FIFA) was founded in
-			Paris by seven countries: France, Belgium, Spain, the Netherlands,
-			Denmark, Sweden, and Switzerland. The first FIFA President was Robert Guérin
-			of France.
-		</p>
-
-		<p>
-			The greatest event in football – the FIFA World Cup –
-			was the brainchild of Frenchman Jules Rimet, who became FIFA's
-			third president in 1921. In 1928,
-			FIFA voted 25 to 5 to hold a world championship every four years.
-			The first FIFA World Cup was held in Uruguay from July 13 to 30, 1930.
-			Uruguay won the inaugural trophy.
-		</p>
-
-		<div class="divider"></div>
-
-		<h1>Football Today</h1>
-		<p>
-			Today, football is the world's most popular sport,
-			played in over 200 countries and enjoyed by billions of fans.
-			FIFA now has 211 member associations – more than the United Nations.
-			The FIFA World Cup is the most watched sporting event on the planet,
-			bringing together nations and cultures in a shared celebration of the
-			beautiful game.
-		</p>
-
-		<p>
-			From ancient Cuju in China to the global phenomenon it is today,
-			football's journey is a testament to its universal appeal.
-			As the saying goes: "The ball is round, and the game lasts 90 minutes"
-			– but its history spans thousands of years.
-		</p>
-
-		<!-- photo‑style stamp & link -->
-		<div class="flex-row" style="justify-content: space-between; align-items: center; margin-top: 1rem;">
-			<a href="index.html">⬅ Back</a>
-			<span class="photo-stamp">⚽ · since 1863 · ⚽</span>
-		</div>
-
-		<img src="WhatsApp Image 2026-06-29 at 7.21.48 PM.jpeg"
-			 width="300"
-			 alt="Vintage football photograph"
-			 style="margin-left: auto; margin-right: auto;" />
-
-		<!-- small decorative line -->
-		<div class="vintage-line">— the beautiful game —</div>
-	</div>
+            <!-- keep external js if needed -->
+            <script src="js/main.js"></script>
 </body>
 </html>
