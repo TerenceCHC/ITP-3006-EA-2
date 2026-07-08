@@ -1,9 +1,27 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
 <head>
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>History of Football</title>
     <style>
+        /* 修复导航栏宽度问题 */
+        header {
+            width: 100%; /* 占满视口宽度 */
+            background-color: #1a1a2e; /* 和外部样式保持一致，可根据需要调整 */
+        }
+
+        /* 确保 navbar 也是全宽，并保持 flex 布局 */
+        .navbar {
+            max-width: 100%; /* 如果有外部限制，覆盖掉 */
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem; /* 左右留一点内边距，内容不贴边 */
+            box-sizing: border-box;
+        }
         body {
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('background.png');
             background-size: cover;
@@ -16,74 +34,84 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
         }
 
         .card,
         .main-title-card,
         .back-card {
-            max-width: 680px;
-            width: 90%;
-            margin: 0 auto 1.2rem auto;
-            padding: 1.5rem 2.2rem;
+            max-width: 720px;
+            width: 92%;
+            margin: 0 auto 1.4rem auto;
+            padding: 1.6rem 2.4rem;
             background: rgba(255, 255, 255, 0.92);
-            border-radius: 14px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
             color: #1a1a2e;
-            transition: transform 0.2s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            backdrop-filter: blur(2px);
         }
 
             /* 卡片滑過時微微浮起 */
             .card:hover,
             .main-title-card:hover,
             .back-card:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+                transform: translateY(-4px);
+                box-shadow: 0 10px 36px rgba(0, 0, 0, 0.18);
             }
 
         /* 主標題卡片：文字置中 */
         .main-title-card {
             text-align: center;
+            padding-top: 1.8rem;
+            padding-bottom: 1.8rem;
         }
 
             .main-title-card h1 {
-                font-size: 2.6rem;
+                font-size: 2.8rem;
                 font-weight: 900;
                 color: #1a1a2e;
-                margin: 0;
-                letter-spacing: 1px;
+                margin: 0 0 0.2rem 0;
+                letter-spacing: 1.5px;
             }
 
         /* 一般卡片內的標題 (h2) */
         .card h2 {
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             font-weight: 700;
             color: #1a1a2e;
             margin-top: 0;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
             border-bottom: 3px solid #f0a500;
-            padding-bottom: 0.3rem;
+            padding-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         /* 卡片內的段落 */
         .card p {
             font-size: 1.05rem;
-            line-height: 1.7;
+            line-height: 1.8;
             color: #1a1a2e;
-            margin: 0.5rem 0 0 0;
+            margin: 0.5rem 0 0.2rem 0;
         }
 
         /* 卡片內的列表 (Our Values) */
         .card ul {
             list-style: none;
             padding: 0;
-            margin: 0.5rem 0 0 0;
+            margin: 0.6rem 0 0 0;
         }
 
             .card ul li {
-                padding: 0.3rem 0;
+                padding: 0.4rem 0 0.4rem 1.8rem;
                 font-size: 1.05rem;
-                border-bottom: 1px dashed #ddd;
+                border-bottom: 1px dashed #e0e0e0;
                 color: #1a1a2e;
+                position: relative;
+                line-height: 1.6;
             }
 
                 .card ul li:last-child {
@@ -93,108 +121,193 @@
         /* 返回按鈕卡片 */
         .back-card {
             text-align: center;
+            padding: 1.2rem 2rem;
         }
 
             .back-card a {
                 display: inline-block;
-                padding: 0.6rem 2rem;
+                padding: 0.65rem 2.4rem;
                 background: #1a1a2e;
                 color: #fff;
-                border-radius: 30px;
+                border-radius: 40px;
                 text-decoration: none;
                 font-weight: 600;
-                transition: background 0.3s;
+                font-size: 1.05rem;
+                transition: background 0.3s, color 0.3s, transform 0.2s;
+                letter-spacing: 0.5px;
             }
 
                 .back-card a:hover {
                     background: #f0a500;
                     color: #1a1a2e;
+                    transform: scale(1.02);
                 }
     </style>
 </head>
 <body>
-    <header style="width: 100%;">
-        <nav class="navbar">
-            <div class="glass-wrapper">
+    <header>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">Football Club</a>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="HistoryOfFootball.html">History</a></li>
+            <li><a href="JoinUs.html">Join</a></li>
+            <li><a href="AboutUs.html">About</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">☰</div>
+    </nav>
+    </header>
 
-                <!-- MAIN TITLE -->
-                <div class="main-title-card">
-                    <h1>About Us</h1>
-                    <span class="sub-glow">✦ Welcome to Football Club ✦</span>
-                </div>
 
-                <!-- Who We Are -->
-                <div class="card">
-                    <h2>Who We Are</h2>
-                    <p>
-                        Founded in 2015, we are a diverse community united by our love for football.
-                        Our mission: a welcoming space to enjoy the game, improve skills, and build lasting friendships.
-                    </p>
-                </div>
 
-                <!-- What We Do -->
-                <div class="card">
-                    <h2>What We Do</h2>
-                    <p>
-                        We follow major football events around the world – from the World Cup and Champions League to the Premier League and La Liga.
-                        We also organise regular training sessions, friendly matches, and internal leagues for members to play together.
-                        Whether you love watching or playing, there’s something for everyone.
-                    </p>
-                </div>
+    <!-- MAIN TITLE -->
+    <div class="main-title-card">
+        <h1>The History of Football</h1>
+        <span class="sub-glow">✦ From Ancient Origins to the Modern Game ✦</span>
+    </div>
 
-                <!-- Our Values -->
-                <div class="card">
-                    <h2>Our Values</h2>
-                    <ul>
-                        <li><strong>Inclusivity</strong> – Open to all genders, ages, and skill levels.</li>
-                        <li><strong>Excellence</strong> – We push each other to improve, both individually and as a team.</li>
-                        <li><strong>Community</strong> – We are a family, celebrating wins and supporting through losses.</li>
-                    </ul>
-                </div>
+    <div class="card">
+        <h2>
+            Ancient Origins
+            <span class="year-badge">Before 1863</span>
+        </h2>
+        <p>
+            Football's roots go back thousands of years. Civilisations across the globe played ball games
+            that involved kicking or carrying a ball, often with ritual or competitive purposes.
+        </p>
+        <ul>
+            <li>
+                <strong>Episkyros (Greece)</strong> – A team game played with a ball, mentioned by ancient
+                writers like Homer. Players passed and kicked the ball across a marked field.
+            </li>
+            <li>
+                <strong>Harpastum (Rome)</strong> – A small-ball game played by the Romans, similar to
+                rugby and football. It was a tough, physical contest.
+            </li>
+            <li>
+                <strong>Cuju (China)</strong> – Played as early as the Han Dynasty (206 BC – 220 AD),
+                Cuju involved kicking a leather ball through an opening into a net. It was also used for
+                military training.
+            </li>
+        </ul>
+    </div>
 
-                <!-- Why Join Us -->
-                <div class="card">
-                    <h2>Why Join Us?</h2>
-                    <p>
-                        Get expert coaching, exclusive training, and a supportive network.
-                        Whether you aim to compete or just play for fun, you belong here.
-                    </p>
-                </div>
+    <div class="card">
+        <h2>
+            Birth of Modern Football
+            <span class="year-badge">1863</span>
+        </h2>
+        <p>
+            The modern game was born in England, where public schools began to formalise their own
+            rules. In 1863, the <strong>Football Association (FA)</strong> was founded in London,
+            creating the first unified set of rules – separating football from rugby.
+        </p>
+        <p>
+            The FA rules introduced the use of a round ball, outlawed handling the ball (except for
+            the goalkeeper), and established the basic framework of the game we know today.
+            This was the foundation upon which the global sport was built.
+        </p>
+    </div>
 
-                <!-- Join the Journey -->
-                <div class="card">
-                    <h2>Join the Journey</h2>
-                    <p>
-                        Check our Events page, visit Contact, or follow us on social media.
-                        We can't wait to see you on the pitch!
-                    </p>
-                </div>
+    <div class="card">
+        <h2>
+            Global Expansion
+            <span class="year-badge">Late 19th – Early 20th C.</span>
+        </h2>
+        <p>
+            British sailors, merchants, and engineers took football to every corner of the British
+            Empire. The sport quickly gained popularity in Europe, South America, and beyond.
+        </p>
+        <ul>
+            <li>
+                <strong>Netherlands &amp; Denmark</strong> – Among the first European nations to adopt
+                the game, establishing clubs and leagues in the 1880s.
+            </li>
+            <li>
+                <strong>Argentina &amp; Uruguay</strong> – British immigrants brought football to
+                South America, where it took root and flourished.
+            </li>
+            <li>
+                <strong>Italy &amp; Germany</strong> – By the early 1900s, both countries had
+                established national football associations and competitive leagues.
+            </li>
+        </ul>
+    </div>
 
-                <!-- Back button -->
-                <div class="back-card">
-                    <a href="index.html"><strong>⬅  Back</strong></a>
-                </div>
+    <div class="card">
+        <h2>
+            FIFA &amp; The World Cup
+            <span class="year-badge">1930</span>
+        </h2>
+        <p>
+            In 1904, the <strong>Fédération Internationale de Football Association (FIFA)</strong>
+            was founded in Paris to govern international competition. The first <strong>FIFA World Cup</strong>
+            was held in <span class="highlight">Uruguay in 1930</span>, with 13 teams participating.
+        </p>
+        <p>
+            Uruguay won the inaugural tournament, defeating Argentina 4–2 in the final. The World Cup
+            quickly became the most prestigious event in the sport, drawing nations from every
+            continent and elevating football to a truly global stage.
+        </p>
+    </div>
 
-                <div class="photo-credit">⚽  the beautiful game  ⚽</div>
-            </div>
+    <div class="card">
+        <h2>
+            Post-War Golden Eras
+            <span class="year-badge">1950s – 1970s</span>
+        </h2>
+        <p>
+            The decades following World War II saw football reach new heights of skill, passion, and
+            global viewership. Legendary players and iconic teams defined the era.
+        </p>
+        <ul>
+            <li>
+                <strong>Pelé (Brazil)</strong> – Led Brazil to three World Cup titles (1958, 1962, 1970)
+                and became a global icon. His skill, creativity, and sportsmanship inspired millions.
+            </li>
+            <li>
+                <strong>Johan Cruyff (Netherlands)</strong> – The master of "Total Football," Cruyff
+                revolutionised the game with his intelligence, technique, and leadership at Ajax and
+                Barcelona.
+            </li>
+            <li>
+                <strong>Franz Beckenbauer (Germany)</strong> – The "Kaiser" redefined the sweeper
+                position, leading West Germany to World Cup glory in 1974.
+            </li>
+        </ul>
+    </div>
 
-            <script>// mobile hamburger toggle
-                const hamburger = document.getElementById('hamburgerBtn');
-                const navMenu = document.getElementById('navMenu');
-                if (hamburger && navMenu) {
-                    hamburger.addEventListener('click', function (e) {
-                        e.stopPropagation();
-                        navMenu.classList.toggle('active');
-                    });
-                    // close on link click (optional)
-                    navMenu.querySelectorAll('a').forEach(link => {
-                        link.addEventListener('click', () => {
-                            navMenu.classList.remove('active');
-                        });
-                    });
-                }</script>
+    <div class="card">
+        <h2>
+            Modern Era
+            <span class="year-badge">1990s – Present</span>
+        </h2>
+        <p>
+            Football entered a new age of commercialisation, global broadcasting, and tactical
+            evolution. The <strong>Premier League</strong> (founded in 1992) became the most-watched
+            league in the world, while the <strong>UEFA Champions League</strong> grew into the
+            pinnacle of club competition.
+        </p>
+        <p>
+            Stars like <strong>Ronaldo</strong>, <strong>Zidane</strong>, <strong>Messi</strong>,
+            and <strong>Ronaldinho</strong> captivated audiences with their genius. The sport
+            continues to evolve with advances in sports science, data analytics, and tactical
+            innovation — yet the heart of the game remains the same: <span class="highlight">
+                the
+                beautiful game
+            </span>.
+        </p>
+    </div>
+    <div class="back-card">
+        <a href="index.html"><strong>⬅  Back</strong></a>
+    </div>
 
-            <!-- keep external js if needed -->
-            <script src="js/main.js"></script>
+    <div class="photo-credit">⚽  the beautiful game  ⚽</div>
+    </div>
+
+    <!-- keep external js if needed -->
+    <script src="js/main.js"></script>
 </body>
 </html>
