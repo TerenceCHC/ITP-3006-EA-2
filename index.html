@@ -28,15 +28,13 @@
             <!-- 上一场比赛结果 -->
             <p class="match-result">LAST MATCH: Spain 1:0 Portugal</p>
             <!-- 按钮：点击后可以跳转或触发事件（这里用JavaScript绑定点击弹窗） -->
-            <a href="#" class="btn" id="watchHighlightBtn">WATCH HIGHLIGHT</a>
+            <a href="https://event.viu.tv/%E4%B8%96%E7%95%8C%E7%9B%832026/" target="_blank"
+                 class="btn" id="watchHighlightBtn">WATCH HIGHLIGHT</a>
         </div>
     </section>
 
         <!-- ============================================ -->
     <!-- 3. 三大功能板块 (Features / Cards)           */
-    /* 解释：使用Flexbox将三个卡片水平并排。
-         每个卡片独立成块，展示不同内容：比赛、球员、新闻。
-         完全匹配你图片中的三栏布局。 */ -->
     <!-- ============================================ -->
     <section class="features">
         
@@ -52,18 +50,37 @@
                <div class="feature-box">
             <h2>2026 World's Best Footballer</h2>
             <div class="players">
-                <!-- 单个球员：图片 + 号码，垂直居中排列 -->
-                <div class="player">
-                    <!-- 注意：src路径请改成你自己的图片文件名 -->
+                <div class="player-image-wrapper">
                     <img src="Kylian-Mbappe-1536x1052.webp" alt="Kylian Mbappe">
+                    <div class="player-info">
+                    <h3>Kylian Mbappé</h3>
+                    <p><strong>Country of Citizenship : </strong>France</p>
+                    <p><strong>club : </strong>Real Madrid Club de Fútbol</p>
+                    <p><strong>Number of appearances : </strong>103</p>
+                    <p><strong>Goals : </strong>63</p>
+                    </div>
                     <span>1</span>
                 </div>
-                <div class="player">
+                <div class="player-image-wrapper">
                     <img src="Lamine_Yamal_in_2025.jpg.webp" alt="Lamine Yamal">
+                    <div class="player-info">
+                    <h3>Lamine Yamal</h3>
+                    <p><strong>Country of Citizenship : </strong>Spain</p>
+                    <p><strong>club : </strong>Futbol Club Barcelona</p>
+                    <p><strong>Number of appearances : </strong>27</p>
+                    <p><strong>Goals : </strong>9</p>
+                    </div>
                     <span>2</span>
                 </div>
-                <div class="player">
+                <div class="player-image-wrapper">
                     <img src="Harry_Kane_England_v_Ghana_23_June_2026-024.jpg" alt="Harry Kane">
+                    <div class="player-info">
+                    <h3>Harry Kane</h3>
+                    <p><strong>Country of Citizenship : </strong>U.K.</p>
+                    <p><strong>club : </strong>Bundesliga</p>
+                    <p><strong>Number of appearances : </strong>119</p>
+                    <p><strong>Goals : </strong>85</p>
+                    </div>
                     <span>3</span>
                 </div>
             </div>

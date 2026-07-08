@@ -1,7 +1,3 @@
-// =============================================
-// 等待 DOM 内容加载完毕再执行（确保所有HTML元素都已存在）
-// 解释：这是为了保证我们获取的元素（如按钮、菜单）不为 null。
-// =============================================
 document.addEventListener('DOMContentLoaded', function() {
 
     // ---------- 1. 汉堡菜单切换 ----------
@@ -43,20 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.remove('active');
         }
     });
-
-    // ---------- 3. "WATCH HIGHLIGHT" 按钮点击事件 ----------
-    // 解释：模拟按钮交互，点击时弹窗提示（也可以是跳转）。
-    var watchBtn = document.getElementById('watchHighlightBtn');
-    if (watchBtn) {
-        watchBtn.addEventListener('click', function(event) {
-            // 阻止默认跳转行为（因为 href 是 #）
-            event.preventDefault();
-            // 弹出提示框，展示互动反馈
-            alert('即将跳转到比赛集锦页面（功能开发中）！');
-            // 在实际项目中，这里可以改成 window.location.href = "highlights.html";
-        });
-    }
-
     // ---------- 4. 额外小功能：点击页面空白处自动关闭移动端菜单（提升用户体验） ----------
     // 解释：当用户在手机屏幕上点击菜单以外的区域时，自动收起菜单。
     document.addEventListener('click', function(event) {
