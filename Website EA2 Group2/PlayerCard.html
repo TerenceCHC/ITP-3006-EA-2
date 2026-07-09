@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Players</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ============================================= */
+        /* 頁面背景（與 About Us 一致）                  */
+        /* ============================================= */
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                        url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        /* ============================================= */
+        /* 主標題卡片                                    */
+        /* ============================================= */
+        .main-title-card {
+            max-width: 720px;
+            width: 92%;
+            margin: 0 auto 2rem auto;
+            padding: 1.6rem 2.4rem;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
+            text-align: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .main-title-card h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #1a1a2e;
+            margin: 0;
+            letter-spacing: 1.5px;
+        }
+
+        /* ============================================= */
+        /* 球員卡片網格（並排）                          */
+        /* ============================================= */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 92%;
+            margin: 0 auto 3rem auto;
+            padding: 0;
+        }
+
+        /* ============================================= */
+        /* 3D 翻轉卡片容器                               */
+        /* ============================================= */
+        .player-card {
+            /* 固定卡片高度，確保翻轉時不變形 */
+            height: 320px;
+            perspective: 1200px;        /* 3D 視角深度 */
+            cursor: pointer;
+        }
+
+        /* 內層包裝（負責翻轉） */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;  /* 保留 3D 空間 */
+        }
+
+        /* 翻轉狀態：由右向左翻轉（-180deg） */
+        .player-card.flipped .card-inner {
+            transform: rotateY(-180deg);
+        }
+
+        /* ============================================= */
+        /* 卡片正面（Front）與背面（Back）              */
+        /* ============================================= */
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;   /* 翻轉時隱藏背面 */
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(2px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ----- 正面：顯示圖片 ----- */
+        .card-front {
+            /* 預設顯示 */
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;          /* 圖片填滿長方形，裁切多餘部分 */
+            display: block;
+        }
+
+        /* 正面也可以放球員姓名（可選），但為了美觀，我們只放圖片 */
+        .card-front .front-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: #fff;
+            padding: 2rem 1rem 1rem 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        /* ----- 背面：顯示球員資料（預設旋轉 180 度，所以正面看不到） ----- */
+        .card-back {
+            transform: rotateY(180deg);   /* 背面一開始是反的 */
+            padding: 1.5rem 1.2rem;
+            background: rgba(255, 255, 255, 0.97);
+            justify-content: flex-start;
+            align-items: flex-start;
+            text-align: left;
+            overflow-y: auto;            /* 資料太多時可滾動 */
+        }
+
+        .card-back .back-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: 0.8rem;
+            border-bottom: 3px solid #f0a500;
+            padding-bottom: 0.4rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card-back p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #1a1a2e;
+            margin: 0.3rem 0;
+            width: 100%;
+        }
+
+        .card-back p strong {
+            color: #f0a500;
+            font-weight: 700;
+            min-width: 70px;
+            display: inline-block;
+        }
+
+        /* 背面底部小提示（點擊返回） */
+        .card-back .back-hint {
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            color: #999;
+            text-align: center;
+            width: 100%;
+            border-top: 1px dashed #ddd;
+            padding-top: 0.6rem;
+        }
+
+        /* ============================================= */
+        /* 懸停效果（讓卡片微微浮起）                    */
+        /* ============================================= */
+        .player-card:hover .card-front,
+        .player-card:hover .card-back {
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+        }
+
+        /* ============================================= */
+        /* 返回按鈕                                      */
+        /* ============================================= */
+        .back-link {
+            display: inline-block;
+            margin: 1rem auto 3rem auto;
+            padding: 0.65rem 2.4rem;
+            background: #1a1a2e;
+            color: #fff;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-link:hover {
+            background: #f0a500;
+            color: #1a1a2e;
+            transform: scale(1.02);
+        }
+
+        /* ============================================= */
+        /* 響應式設計：手機上調整高度和字體              */
+        /* ============================================= */
+        @media (max-width: 600px) {
+            .players-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+            .player-card {
+                height: 280px;
+            }
+            .card-back .back-name {
+                font-size: 1.1rem;
+            }
+            .card-back p {
+                font-size: 0.8rem;
+                line-height: 1.6;
+            }
+            .main-title-card h1 {
+                font-size: 2rem;
+            }
+            .card-front .front-name {
+                font-size: 1rem;
+                padding: 1.5rem 0.5rem 0.6rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .players-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .player-card {
+                height: 220px;
+            }
+            .card-back {
+                padding: 0.8rem;
+            }
+            .card-back .back-name {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+            }
+            .card-back p {
+                font-size: 0.75rem;
+                margin: 0.1rem 0;
+            }
+            .card-back .back-hint {
+                font-size: 0.6rem;
+                margin-top: 0.3rem;
+                padding-top: 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== 導航欄 ========== -->
+    <header style="width: 100%;">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">Football Club</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="HistoryOfFootball.html">History</a></li>
+                <li><a href="PlayerCard.html" class="active">Players</a></li>
+                <li><a href="JoinUs.html">Join</a></li>
+                <li><a href="AboutUs.html">About</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <!-- ========== 主標題 ========== -->
+    <div class="main-title-card">
+        <h1>⭐ The 10 best players of the past 25 years ⭐</h1>
+        <p style="color: #666; margin-top: 0.3rem;">👆 Click the card to flip it and view details.</p>
+    </div>
+
+    <!-- ========== 球員卡片網格 ========== -->
+    <div class="players-grid">
+
+        <!-- 卡片 1 -->
+        <div class="player-card" data-player="mbappe">
+            <div class="card-inner">
+                <!-- 正面：圖片 -->
+                <div class="card-front">
+                    <img src="Lionel_Messi_White_House_2026_(3x4_cropped).jpg.webp" alt="Lionel Messi">
+                    <div class="front-name">Lionel Messi</div>
+                </div>
+                <!-- 背面：資料 -->
+                <div class="card-back">
+                    <div class="back-name">Lionel Messi</div>
+                    <p><strong>Country of Citizenship:</strong>Argentina</p>
+                    <p><strong>club:</strong>Argentina national football team</p>
+                    <p><strong>Location:</strong>Forward</p>
+                    <p><strong>Goal:</strong>900</p>
+                    <div class="back-hint">Click to return to the front.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片 2-->
+        <div class="player-card" data-player="yamal">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="President_Donald_Trump_meets_with_Cristiano_Ronaldo_in_the_Oval_Office_(54933344262)_(cropped_and_rotated).jpg.webp" 
+                        alt="Cristiano Ronaldo">
+                    <div class="front-name">Cristiano Ronaldo</div>
+                </div>
+                <div class="card-back">
+                    <div class="back-name">Cristiano Ronaldo</div>
+                    <p><strong>Country of Citizenship:</strong>Portugal</p>
+                    <p><strong>club:</strong>Saudi Professional Football League</p>
+                    <p><strong>Location:</strong>Forward</p>
+                    <p><strong>Goal:</strong>970</p>
+                    <div class="back-hint">Click to return to the front.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片 3 -->
+        <div class="player-card" data-player="kane">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="Thierry_Henry_(51649035951)_(cropped).jpg.webp" alt="Thierry Henry">
+                    <div class="front-name">Thierry Henry</div>
+                </div>
+                <div class="card-back">
+                    <div class="back-name">Thierry Henry</div>
+                    <p><strong>Country of Citizenship:</strong>France</p>
+                    <p><strong>club:</strong>French national football team</p>
+                    <p><strong>Location:</strong>Forward</p>
+                    <p><strong>Goal:</strong>411</p>
+                    <div class="back-hint">Click to return to the front.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片 4-->
+        <div class="player-card" data-player="vandijk">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="Zinedine_Zidane_by_Tasnim_03.jpg" alt="Zinedine Zidane">
+                    <div class="front-name">Zinedine Zidane</div>
+                </div>
+                <div class="card-back">
+                    <div class="back-name">Zinedine Zidane</div>
+                    <p><strong>Country of Citizenship:</strong>France</p>
+                    <p><strong>club:</strong>Real Madrid Club de Fútbol</p>
+                    <p><strong>Location:</strong>Midfielder</p>
+                    <p><strong>Goal:</strong>156</p>
+                    <div class="back-hint">Click to return to the front.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片 5 -->
+        <div class="player-card" data-player="debruyne">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="ISL-HRV_(7).jpg.webp" alt="Luka Modrić">
+                    <div class="front-name">Luka Modrić</div>
+                </div>
+                <div class="card-back">
+                    <div class="back-name">Luka Modrić</div>
+                    <p><strong>Country of Citizenship:</strong>Croatia</p>
+                    <p><strong>club:</strong>Milan Football Club</p>
+                    <p><strong>Location:</strong>Midfielder</p>
+                    <p><strong>Goal:</strong>138</p>
+                    <div class="back-hint">Click to return to the front.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片 6 -->
+        <div class="player-card" data-player="haaland">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="Kylian_Mbappe_France_v_Senegal_16_June_2026-391_(cropped).jpg.webp" alt="Kylian Mbappé">
+                    <div class="front-name">Erling Haaland</div>
+                </div>
+                <div class="card-back">
+                    <div class="back-name">Kylian Mbappé</div>
+                    <p><strong>Country of Citizenship:</strong>France</p>
+                    <p><strong>club:</strong>Real Madrid Club de Fútbol</p>
+                    <p><strong>Location:</strong>Forward</p>
+                    <p><strong>Goal:</strong>105</p>
+                    <div class="back-hint">Click to return to the front.</div>
+                </div>
+            </div>
+        </div>
+
+         <!-- 卡片 7 -->
+        <div class="player-card" data-player="yamal">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="Andrés_Iniesta_(cropped).jpg" 
+                        alt="Andrés Iniesta">
+                    <div class="front-name">Andrés Iniesta</div>
+                </div>
+                <div class="card-back">
+                    <div class="back-name">Andrés Iniesta</div>
+                    <p><strong>Country of Citizenship:</strong>Spain</p>
+                    <p><strong>club:</strong>Spanish national football team</p>
+                    <p><strong>Location:</strong>Midfielder</p>
+                    <p><strong>Goal:</strong>101</p>
+                    <div class="back-hint">Click to return to the front.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片 8 -->
+        <div class="player-card" data-player="yamal">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="Xavi_Hernandez_(31521652051).jpg" 
+                        alt="Xavi Hernández">
+                    <div class="front-name">Xavi Hernández</div>
+                </div>
+                <div class="card-back">
+                    <div class="back-name">Xavi Hernández</div>
+                    <p><strong>Country of Citizenship:</strong>Spain</p>
+                    <p><strong>club:</strong>Barcelona Football Club</p>
+                    <p><strong>Location:</strong>Midfielder</p>
+                    <p><strong>Goal:</strong>123</p>
+                    <div class="back-hint">Click to return to the front.</div>
+                </div>
+            </div>
+        </div>
+
+                <!-- 卡片 9 -->
+        <div class="player-card" data-player="yamal">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="051119SMcC0014.jpg.webp" 
+                        alt="Ronaldo Nazário">
+                    <div class="front-name">Ronaldo Nazário</div>
+                </div>
+                <div class="card-back">
+                    <div class="back-name">Ronaldo Nazário</div>
+                    <p><strong>Country of Citizenship:</strong>Brazil</p>
+                    <p><strong>club:</strong>Brazilian national football team</p>
+                    <p><strong>Location:</strong>Forward</p>
+                    <p><strong>Goal:</strong>416</p>
+                    <div class="back-hint">Click to return to the front.</div>
+                </div>
+            </div>
+        </div>
+
+                <!-- 卡片 10 -->
+        <div class="player-card" data-player="yamal">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="Ronaldinho_in_2019.jpg.webp" 
+                        alt="Ronaldinho">
+                    <div class="front-name">Ronaldinho</div>
+                </div>
+                <div class="card-back">
+                    <div class="back-name">Ronaldinho</div>
+                    <p><strong>Country of Citizenship:</strong>Brazil</p>
+                    <p><strong>club:</strong>Brazilian national football team</p>
+                    <p><strong>Location:</strong>Midfielder</p>
+                    <p><strong>Goal:</strong>330</p>
+                    <div class="back-hint">Click to return to the front.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========== 返回按鈕 ========== -->
+    <a href="index.html" class="back-link">⬅ Back to Home</a>
+
+    <!-- ========== JavaScript ========== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // 選取所有卡片
+            var cards = document.querySelectorAll('.player-card');
+
+            cards.forEach(function(card) {
+                card.addEventListener('click', function() {
+                    // 切換 'flipped' 類別
+                    // 如果已經翻開（有 flipped），就翻回去；如果沒翻開，就翻開
+                    this.classList.toggle('flipped');
+                });
+            });
+
+            // ---------- 漢堡選單（與 main.js 一致） ----------
+            var hamburger = document.getElementById('hamburger');
+            var navMenu = document.querySelector('.nav-menu');
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+
+            document.addEventListener('click', function(event) {
+                if (navMenu.classList.contains('active')) {
+                    var isClickInsideMenu = navMenu.contains(event.target);
+                    var isClickOnHamburger = hamburger.contains(event.target);
+                    if (!isClickInsideMenu && !isClickOnHamburger) {
+                        navMenu.classList.remove('active');
+                    }
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

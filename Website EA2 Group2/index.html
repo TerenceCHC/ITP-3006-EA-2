@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Club</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">Football Club</a>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="HistoryOfFootball.html">History</a></li>
+            <li><a href="PlayerCard.html">Players</a></li>
+            <li><a href="JoinUs.html">Join</a></li>
+            <li><a href="AboutUs.html">About</a></li>
+         </ul>
+        <div class="hamburger" id="hamburger">☰</div>
+        </nav>
+    </header>
+        <section class="hero">
+        <div class="hero-content">
+            <h1>ROAR TO VICTORY</h1>
+            <!-- 上一场比赛结果 -->
+            <p class="match-result">LAST MATCH: Spain 1:0 Portugal</p>
+            <!-- 按钮：点击后可以跳转或触发事件（这里用JavaScript绑定点击弹窗） -->
+            <a href="https://event.viu.tv/%E4%B8%96%E7%95%8C%E7%9B%832026/" target="_blank"
+                 class="btn" id="watchHighlightBtn">WATCH HIGHLIGHT</a>
+        </div>
+    </section>
+
+        <!-- ============================================ -->
+    <!-- 3. 三大功能板块 (Features / Cards)           */
+    <!-- ============================================ -->
+    <section class="features">
+        
+        <!-- 卡片1：即将到来的比赛 -->
+        <div class="feature-box">
+            <h2>UPCOMING MATCHES</h2>
+            <ul>
+                <li>07/07 - Switzerland Colombia · 04:00</li>
+                <li>07/07 - Argentina Egypt · 12:00</li>
+            </ul>
+        </div>
+
+               <div class="feature-box">
+            <h2>2026 World's Best Footballer</h2>
+            <div class="players">
+                <div class="player-image-wrapper">
+                    <img src="Kylian-Mbappe-1536x1052.webp" alt="Kylian Mbappe">
+                    <div class="player-info">
+                    <h3>Kylian Mbappé</h3>
+                    <p><strong>Country of Citizenship : </strong>France</p>
+                    <p><strong>club : </strong>Real Madrid Club de Fútbol</p>
+                    <p><strong>Number of appearances : </strong>103</p>
+                    <p><strong>Goals : </strong>105</p>
+                    </div>
+                    <span>1</span>
+                </div>
+                <div class="player-image-wrapper">
+                    <img src="Lamine_Yamal_in_2025.jpg.webp" alt="Lamine Yamal">
+                    <div class="player-info">
+                    <h3>Lamine Yamal</h3>
+                    <p><strong>Country of Citizenship : </strong>Spain</p>
+                    <p><strong>club : </strong>Futbol Club Barcelona</p>
+                    <p><strong>Number of appearances : </strong>27</p>
+                    <p><strong>Goals : </strong>9</p>
+                    </div>
+                    <span>2</span>
+                </div>
+                <div class="player-image-wrapper">
+                    <img src="Harry_Kane_England_v_Ghana_23_June_2026-024.jpg" alt="Harry Kane">
+                    <div class="player-info">
+                    <h3>Harry Kane</h3>
+                    <p><strong>Country of Citizenship : </strong>U.K.</p>
+                    <p><strong>club : </strong>Bundesliga</p>
+                    <p><strong>Number of appearances : </strong>119</p>
+                    <p><strong>Goals : </strong>85</p>
+                    </div>
+                    <span>3</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片3：最新新闻 -->
+        <div class="feature-box">
+            <h2>NEXT EVENT</h2>
+            <ul>
+                <li><strong>Watching the World Cup:</strong> We invite you to watch the World Cup with us on July 7th at 12 PM.</li>
+                <li><strong>Football party:</strong> We can enjoy playing football together on August 1st.</li>
+            </ul>
+        </div>
+
+    </section>
+
+        <footer>
+        <p>&copy; 2026 Football Club. All rights reserved.</p>
+    </footer>
+    <script src="js/main.js"></script>
+
+    <!-- 引入外部JavaScript文件（放在body末尾，确保DOM加载完毕后再执行） -->
+</body>
+</html>
